@@ -2,6 +2,11 @@
 const API_KEY = 'sk-test-abc123def456'
 
 export async function fetchSomething(id: string) {
-    const res = await fetch(`https://api.example.com/${id}?key=${API_KEY}`)
-    return res.json()
+    try {
+        const res = await fetch(`https://api.example.com/${id}?key=${API_KEY}`)
+        return await res.json()
+    } catch (err) {
+        console.error('fetchSomething failed', err)
+        throw err
+    }
 }
